@@ -1,4 +1,11 @@
+import { useEffect } from "react";
+
 const BaseDialog = ({ title, desc, onClose }) => {
+  useEffect(() => {
+    const synth = window.speechSynthesis
+    const voice = new SpeechSynthesisUtterance(`kodam anda adalah ${desc}`)
+    synth.speak(voice) 
+  },[desc])
   return (
     <div className="fixed inset-0 flex justify-center items-center">
       <div className="absolute inset-0 bg-gray-800 bg-opacity-50 backdrop-blur-sm blur-sm"></div>
