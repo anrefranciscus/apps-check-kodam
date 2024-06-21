@@ -174,18 +174,208 @@ const things = [
   "Batagor",
 ];
 
+const emojis = {
+  animal: [
+    "🐱",
+    "🐭",
+    "🦎",
+    "🦄",
+    "🦏",
+    "🦎",
+    "🐌",
+    "🐨",
+    "🐸",
+    "🐒",
+    "🐶",
+    "🐅",
+    "🐐",
+    "🦦",
+    "🐎",
+    "🐲",
+    "🐘",
+    "🦎",
+    "🦎",
+    "🐢",
+    "🐟",
+    "🐛",
+    "🦎",
+    "🦋",
+    "🕷️",
+    "🦎",
+    "🦓",
+    "🦆",
+    "🐓",
+    "🐊",
+    "🦍",
+    "🐜",
+    "🦊",
+    "🐉",
+    "🐉",
+    "🐟",
+    "🦑",
+    "🐛",
+    "🐜",
+    "🦐",
+    "🐾",
+    "🐒",
+    "🪳",
+    "🦋",
+    "🕷️",
+    "🦎",
+    "🐢",
+    "🦎",
+    "🦄",
+    "🦎",
+    "🦎",
+    "🐜",
+    "🦎",
+    "🐁",
+    "🤴",
+    "🤴",
+    "🦂",
+    "🦗",
+    "🦂",
+    "🐛",
+    "🐱",
+    "🐼",
+    "🦄",
+    "👴",
+  ],
+  behaviour: [
+    "😞",
+    "😔",
+    "🛠️",
+    "😴",
+    "😵",
+    "🕵️",
+    "🤰",
+    "👨‍🔬",
+    "😔",
+    "👹",
+    "😫",
+    "🐛",
+    "😵",
+    "😢",
+    "🤑",
+    "🎸",
+    "😿",
+    "🦁",
+    "🎤",
+    "🗣️",
+    "😵",
+    "🥈",
+    "😵",
+    "🏀",
+    "😞",
+    "🤑",
+    "🚼",
+    "👣",
+    "🏞️",
+    "🏝️",
+    "🗻",
+    "🏔️",
+    "🎤",
+    "👣",
+    "🏝️",
+    "🗻",
+    "🗣️",
+    "🚼",
+    "👣",
+    "😫",
+    "😂",
+    "🥈",
+    "🥇",
+    "🥈",
+    "🏞️",
+    "😂",
+    "😫",
+  ],
+  thing: [
+    "🔊",
+    "📢",
+    "🚪🚪",
+    "❄️",
+    "🍦",
+    "🏓",
+    "🐟",
+    "🔌",
+    "🎧",
+    "🧮",
+    "🩴",
+    "🐛",
+    "🥏",
+    "📱",
+    "🩴",
+    "🧹",
+    "🚪",
+    "🍯",
+    "🍚",
+    "🛒",
+    "🛴",
+    "🌽",
+    "🍚",
+    "🍖",
+    "🍦",
+    "⭐",
+    "🚁",
+    "🕷️",
+    "🦇",
+    "🍍",
+    "🍦",
+    "🥘",
+    "🐯",
+    "🥘",
+    "🐉",
+    "🥢",
+    "🍠",
+    "🌯",
+    "🥔",
+    "🥊",
+    "🥇",
+    "🍔",
+    "🛣️",
+    "👻",
+    "🚅",
+    "🛣️",
+    "🛣️",
+    "🚴",
+    "🚦",
+    "🏎️",
+    "👑",
+    "🐢",
+    "🍢",
+  ],
+};
 const getRandomItem = (array) => {
   const randomItem = Math.floor(Math.random() * array.length);
   return array[randomItem];
 };
 
+const getRandomEmoji = (type) => {
+  const emojisOfType = emojis[type];
+  const randomIndex = Math.floor(Math.random() * emojisOfType.length);
+  return emojisOfType[randomIndex];
+};
+
 const generateRandomKhodam = () => {
-    const randomAnimal = getRandomItem(animals);
-    const randomBehaviour = getRandomItem(behaviours);
-    const randomThing = getRandomItem(things);
-    const randomTest = Math.round(Math.random());
-    
-    return randomTest === 0 ? `${randomAnimal} ${randomBehaviour}` : randomThing;
+  const randomAnimal = getRandomItem(animals);
+  const randomBehaviour = getRandomItem(behaviours);
+  const randomThing = getRandomItem(things);
+  const randomTest = Math.round(Math.random());
+
+  // return randomTest === 0 ? `${randomAnimal} ${randomBehaviour}` : randomThing;
+  let result;
+  let emoji;
+
+  if (randomTest === 0) {
+    result = `${randomAnimal} ${randomBehaviour}`;
+    emoji = getRandomEmoji("animal");
+  } else {
+    result = randomThing;
+    emoji = getRandomEmoji("thing");
+  }
+
+  return `${result} ${emoji}`;
 };
 
 const RandomGenerator = {

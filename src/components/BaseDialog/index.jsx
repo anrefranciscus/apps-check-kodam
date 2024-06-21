@@ -1,11 +1,19 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const BaseDialog = ({ title, name, desc, onClose }) => {
-  useEffect(() => {
+  const [showDesc, setShowDesc] = useState(false);
+
+  useEffect(() => {   
     const synth = window.speechSynthesis
     const voice = new SpeechSynthesisUtterance(`${name} kodam anda adalah ${desc}`)
     voice.lang = 'id-ID'
     synth.speak(voice) 
+
+    const timeout = setTimeout(() => {
+      setShowDesc(true);
+    }, 500);
+
+    return () => clearTimeout(timeout);
   },[name,desc])
   return (
     <div className="fixed inset-0 flex justify-center items-center">
@@ -15,12 +23,14 @@ const BaseDialog = ({ title, name, desc, onClose }) => {
           <h2 className="text-2xl font-bold">{title}</h2>
         </div>
         <div className="p-4">
-          <p>{desc}</p>
+        <p className={`text-lg font-serif font-bold ${showDesc ? 'animate-explode text-red-600' : 'opacity-0 translate-y-10'}`}>
+            {desc}
+          </p>          
         </div>
         <div className="p-4 border-t flex justify-end">
-          <button
+        <button
             onClick={onClose}
-            className="bg-indigo-500 text-white py-2 px-4 rounded-md"
+            className="bg-indigo-500 hover:bg-indigo-600 text-white py-2 px-4 rounded-md transition-colors duration-300"
           >
             Close
           </button>

@@ -6,7 +6,7 @@
 }
 
 body {
-  background-color: #1e1e1e;
+  background-color: #1e1e1e
 }
 .logo {
   height: 6em;
@@ -42,4 +42,18 @@ body {
 
 .read-the-docs {
   color: #888;
+}
+
+
+@keyframes explode {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-explode {
+  animation: explode 0.5s ease-out;
 }
