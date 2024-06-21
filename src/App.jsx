@@ -9,6 +9,7 @@ function App() {
   const inputRef = useRef(null);
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
+  const [name, setName] = useState(null);
   const [loading, setLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -26,6 +27,7 @@ function App() {
       const generator = RandomGenerator.generateRandomKhodam();
       setLoading(false);
       setData(generator);
+      setName(inputValue)
       setIsModalOpen(true);
     }, 3000);
   };
@@ -71,6 +73,7 @@ function App() {
       {isModalOpen && (
         <BaseDialog
           title="Kodam Anda Adalah"
+          name={name}
           desc={data}
           onClose={closeModal}
         />

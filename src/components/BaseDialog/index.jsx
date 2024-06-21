@@ -1,11 +1,12 @@
 import { useEffect } from "react";
 
-const BaseDialog = ({ title, desc, onClose }) => {
+const BaseDialog = ({ title, name, desc, onClose }) => {
   useEffect(() => {
     const synth = window.speechSynthesis
-    const voice = new SpeechSynthesisUtterance(`kodam anda adalah ${desc}`)
+    const voice = new SpeechSynthesisUtterance(`${name} kodam anda adalah ${desc}`)
+    voice.lang = 'id-ID'
     synth.speak(voice) 
-  },[desc])
+  },[name,desc])
   return (
     <div className="fixed inset-0 flex justify-center items-center">
       <div className="absolute inset-0 bg-gray-800 bg-opacity-50 backdrop-blur-sm blur-sm"></div>
