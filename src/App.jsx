@@ -13,8 +13,8 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleRequest = () => {
-    const inputValue = inputRef.current.value.trim();
-    if (!inputValue) {
+    const inputValue = inputRef.current.value;
+    if (!inputValue || inputValue.trim() === "") {
       setError("Nama anda tidak boleh kosong");
       return;
     }
@@ -28,6 +28,13 @@ function App() {
       setData(generator);
       setIsModalOpen(true);
     }, 3000);
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter" || event.type === "click") {
+      event.preventDefault();
+      handleRequest();
+    }
   };
 
   const closeModal = () => {
@@ -47,6 +54,7 @@ function App() {
             placeholder="Ketik nama anda disini...."
             ref={inputRef}
             name="name"
+            onKeyDown={handleKeyDown}
             className="py-2 px-4 text-md rounded-md"
           />
           <button
